@@ -4,18 +4,21 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const photos = [
-  { src: '/images/1001028563.jpg', alt: 'Dalcove portrait', span: 'md:row-span-2' },
-  { src: '/images/1G4A4069.jpg', alt: 'Dalcove at work', span: '' },
-  { src: '/images/1G4A4070.jpg', alt: 'Dalcove coding', span: '' },
-  { src: '/images/4N0A9807.JPG', alt: 'Dalcove creative', span: 'md:row-span-2' },
-  { src: '/images/1001028575.jpg', alt: 'Dalcove professional', span: '' },
-  { src: '/images/1001028579.jpg', alt: 'Dalcove design', span: '' },
-  { src: '/images/4N0A9745.JPG', alt: 'Dalcove focused', span: '' },
-  { src: '/images/4N0A9747.JPG', alt: 'Dalcove collaborating', span: 'md:row-span-2' },
-  { src: '/images/4N0A9519.JPG', alt: 'Dalcove exploring', span: '' },
-  { src: '/images/4N0A9548.JPG', alt: 'Dalcove building', span: '' },
-  { src: '/images/4N0A9359.JPG', alt: 'Dalcove presenting', span: '' },
-  { src: '/images/4N0A9385.JPG', alt: 'Dalcove debugging', span: '' },
+  { src: '/images/1001028563.jpg', alt: 'Portrait', span: 'md:row-span-2' },
+  { src: '/images/1G4A4069.jpg', alt: 'At work', span: '' },
+  { src: '/images/1G4A4070.jpg', alt: 'Coding session', span: '' },
+  { src: '/images/4N0A9807.JPG', alt: 'Creative moment', span: 'md:row-span-2' },
+  { src: '/images/1001028575.jpg', alt: 'Professional', span: '' },
+  { src: '/images/1001028579.jpg', alt: 'Design thinking', span: '' },
+  { src: '/images/4N0A9745.JPG', alt: 'Deep focus', span: '' },
+  { src: '/images/4N0A9747.JPG', alt: 'Collaboration', span: 'md:row-span-2' },
+  { src: '/images/4N0A9519.JPG', alt: 'Exploring ideas', span: '' },
+  { src: '/images/4N0A9548.JPG', alt: 'Building something', span: '' },
+  { src: '/images/4N0A9359.JPG', alt: 'Presenting work', span: '' },
+  { src: '/images/4N0A9385.JPG', alt: 'Problem solving', span: '' },
+  { src: '/images/4N0A9732.JPG', alt: 'In the zone', span: '' },
+  { src: '/images/4N0A9733.JPG', alt: 'Getting it done', span: 'md:row-span-2' },
+  { src: '/images/d2.jpg', alt: 'Headshot', span: '' },
 ];
 
 export default function PhotoGallery() {

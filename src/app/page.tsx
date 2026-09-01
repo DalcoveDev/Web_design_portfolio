@@ -8,6 +8,8 @@ import ProjectCard from '@/components/ProjectCard';
 import ContactForm from '@/components/ContactForm';
 import PhotoGallery from '@/components/PhotoGallery';
 import ImageStrip from '@/components/ImageStrip';
+import HeroBackground from '@/components/HeroBackground';
+import BehindTheScenes from '@/components/BehindTheScenes';
 import { defaultData } from '@/lib/data';
 import { loadData } from '@/lib/store';
 import {
@@ -40,6 +42,7 @@ export default function Home() {
       <main>
         {/* Hero with 3D Scene */}
         <section className="min-h-screen flex items-center pt-32 pb-16 relative overflow-hidden">
+          <HeroBackground />
           <HeroCanvas />
           <ParallaxHero />
           <div className="parallax-orb-1 absolute -top-[30%] -right-[15%] w-[70vw] h-[70vw] rounded-full bg-[radial-gradient(circle,rgba(196,93,62,0.08)_0%,transparent_70%)] pointer-events-none" />
@@ -142,6 +145,21 @@ export default function Home() {
                 ))}
               </div>
             </ServicesAnimation>
+          </div>
+        </section>
+
+        {/* Behind the Scenes */}
+        <section className="py-24">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <ScrollRevealSection>
+              <div className="flex items-baseline gap-6 mb-12">
+                <span className="font-serif italic text-[var(--terracotta)] text-lg">🎬</span>
+                <h2 className="text-sm font-semibold tracking-widest uppercase">Behind the Scenes</h2>
+              </div>
+            </ScrollRevealSection>
+            <ScrollRevealSection delay={0.1}>
+              <BehindTheScenes />
+            </ScrollRevealSection>
           </div>
         </section>
 
