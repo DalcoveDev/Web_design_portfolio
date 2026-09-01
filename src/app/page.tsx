@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import ContactForm from '@/components/ContactForm';
+import PhotoGallery from '@/components/PhotoGallery';
 import { defaultData } from '@/lib/data';
 import { loadData } from '@/lib/store';
 import {
@@ -158,6 +159,21 @@ export default function Home() {
                 ))}
               </div>
             </ProjectCardsAnimation>
+          </div>
+        </section>
+
+        {/* Photo Gallery */}
+        <section className="py-24 bg-[var(--bg-warm)] border-y border-white/6">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <ScrollRevealSection>
+              <div className="flex items-baseline gap-6 mb-12">
+                <span className="font-serif italic text-[var(--terracotta)] text-lg">📸</span>
+                <h2 className="text-sm font-semibold tracking-widest uppercase">Gallery</h2>
+              </div>
+            </ScrollRevealSection>
+            <ScrollRevealSection delay={0.1}>
+              <PhotoGallery />
+            </ScrollRevealSection>
           </div>
         </section>
 
