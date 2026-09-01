@@ -4,12 +4,18 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const photos = [
-  { src: '/images/1001028563.jpg', alt: 'Dalcove portrait', span: 'row-span-2' },
+  { src: '/images/1001028563.jpg', alt: 'Dalcove portrait', span: 'md:row-span-2' },
   { src: '/images/1G4A4069.jpg', alt: 'Dalcove at work', span: '' },
   { src: '/images/1G4A4070.jpg', alt: 'Dalcove coding', span: '' },
-  { src: '/images/4N0A9807.JPG', alt: 'Dalcove creative', span: 'row-span-2' },
+  { src: '/images/4N0A9807.JPG', alt: 'Dalcove creative', span: 'md:row-span-2' },
   { src: '/images/1001028575.jpg', alt: 'Dalcove professional', span: '' },
   { src: '/images/1001028579.jpg', alt: 'Dalcove design', span: '' },
+  { src: '/images/4N0A9745.JPG', alt: 'Dalcove focused', span: '' },
+  { src: '/images/4N0A9747.JPG', alt: 'Dalcove collaborating', span: 'md:row-span-2' },
+  { src: '/images/4N0A9519.JPG', alt: 'Dalcove exploring', span: '' },
+  { src: '/images/4N0A9548.JPG', alt: 'Dalcove building', span: '' },
+  { src: '/images/4N0A9359.JPG', alt: 'Dalcove presenting', span: '' },
+  { src: '/images/4N0A9385.JPG', alt: 'Dalcove debugging', span: '' },
 ];
 
 export default function PhotoGallery() {

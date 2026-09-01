@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import ContactForm from '@/components/ContactForm';
 import PhotoGallery from '@/components/PhotoGallery';
+import ImageStrip from '@/components/ImageStrip';
 import { defaultData } from '@/lib/data';
 import { loadData } from '@/lib/store';
 import {
@@ -61,6 +62,9 @@ export default function Home() {
             <div className="hero-scroll hidden md:block mt-8"><span className="scroll-line" /></div>
           </div>
         </section>
+
+        {/* Image Strip */}
+        <ImageStrip />
 
         {/* About */}
         <section id="about" className="py-40 border-t border-white/6">
