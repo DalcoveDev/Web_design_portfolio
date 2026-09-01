@@ -63,30 +63,53 @@ export default function Home() {
 
         {/* About */}
         <section id="about" className="py-40 border-t border-white/6">
-          <div className="max-w-[1200px] mx-auto px-6 grid md:grid-cols-[160px_1fr] gap-16">
-            <ScrollRevealSection>
-              <span className="font-serif italic text-[var(--terracotta)] text-lg block">01</span>
-              <span className="text-xs font-medium tracking-[0.15em] uppercase text-[var(--cream-dim)] mt-2 block">About</span>
-            </ScrollRevealSection>
-            <div>
-              <ScrollRevealSection delay={0.1}>
-                <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold leading-tight tracking-tight mb-8">
-                  A designer who thinks in <em className="serif-accent">systems</em>, not just screens.
-                </h2>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="grid md:grid-cols-[160px_1fr_300px] gap-12 items-start">
+              <ScrollRevealSection>
+                <span className="font-serif italic text-[var(--terracotta)] text-lg block">01</span>
+                <span className="text-xs font-medium tracking-[0.15em] uppercase text-[var(--cream-dim)] mt-2 block">About</span>
               </ScrollRevealSection>
-              <ScrollRevealSection delay={0.2}>
-                <p className="text-lg text-[var(--cream-dim)] leading-[1.8] max-w-[58ch] mb-16">{data.about.text}</p>
-              </ScrollRevealSection>
-              <StatsAnimation>
-                <div className="flex gap-16">
-                  {data.about.stats.map((s) => (
-                    <div key={s.label} className="stat-item flex flex-col">
-                      <span className="font-serif italic text-[2.5rem] text-[var(--terracotta)] leading-none">{s.number}</span>
-                      <span className="text-xs font-medium text-[var(--cream-dim)] mt-2 uppercase tracking-widest">{s.label}</span>
-                    </div>
-                  ))}
+              <div>
+                <ScrollRevealSection delay={0.1}>
+                  <h2 className="text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold leading-tight tracking-tight mb-8">
+                    A designer who thinks in <em className="serif-accent">systems</em>, not just screens.
+                  </h2>
+                </ScrollRevealSection>
+                <ScrollRevealSection delay={0.2}>
+                  <p className="text-lg text-[var(--cream-dim)] leading-[1.8] max-w-[58ch] mb-8">{data.about.text}</p>
+                </ScrollRevealSection>
+                <ScrollRevealSection delay={0.3}>
+                  <a href={data.cv} download className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--surface)] border border-white/10 rounded-lg text-sm font-medium text-[var(--cream)] hover:bg-white/5 hover:border-[var(--terracotta)]/30 transition mb-12">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Download CV
+                  </a>
+                </ScrollRevealSection>
+                <StatsAnimation>
+                  <div className="flex gap-16">
+                    {data.about.stats.map((s) => (
+                      <div key={s.label} className="stat-item flex flex-col">
+                        <span className="font-serif italic text-[2.5rem] text-[var(--terracotta)] leading-none">{s.number}</span>
+                        <span className="text-xs font-medium text-[var(--cream-dim)] mt-2 uppercase tracking-widest">{s.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </StatsAnimation>
+              </div>
+              {/* Profile Photo */}
+              <ScrollRevealSection delay={0.4}>
+                <div className="relative group">
+                  <div className="absolute -inset-3 bg-gradient-to-br from-[var(--terracotta)]/20 to-[var(--sage)]/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <img
+                    src={data.profileImage}
+                    alt="Dalcove — Web Designer"
+                    className="relative w-full aspect-[3/4] object-cover rounded-xl border border-white/10 group-hover:border-[var(--terracotta)]/30 transition-all duration-500"
+                  />
+                  <div className="absolute bottom-4 left-4 right-4 bg-[var(--bg)]/80 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                    <p className="text-xs font-medium text-[var(--cream)]">Ingabire Dalcove</p>
+                    <p className="text-xs text-[var(--cream-dim)]">Web Designer & Frontend Developer</p>
+                  </div>
                 </div>
-              </StatsAnimation>
+              </ScrollRevealSection>
             </div>
           </div>
         </section>

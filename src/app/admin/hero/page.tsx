@@ -29,6 +29,10 @@ export default function AdminHero() {
           <div><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Line 3</label><input className="input" value={data.hero.titleLine3} onChange={e => setData({ ...data, hero: { ...data.hero, titleLine3: e.target.value } })} /></div>
         </div>
         <div className="mb-4"><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Description</label><textarea className="input min-h-[80px]" value={data.hero.description} onChange={e => setData({ ...data, hero: { ...data.hero, description: e.target.value } })} /></div>
+        <div className="grid md:grid-cols-2 gap-4 mb-4">
+          <div><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Profile Image</label><input className="input" value={data.profileImage || ''} onChange={e => setData({ ...data, profileImage: e.target.value })} placeholder="/images/d2.jpg" /></div>
+          <div><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">CV File Path</label><input className="input" value={data.cv || ''} onChange={e => setData({ ...data, cv: e.target.value })} placeholder="/INGABIRE_DALCOVE_Resume_Real_for_all.pdf" /></div>
+        </div>
         <div className="mt-8 p-6 bg-[var(--surface)] border border-white/6 rounded-xl">
           <h3 className="text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-4">Preview</h3>
           <span className="inline-block text-xs font-medium tracking-[0.15em] uppercase text-[var(--terracotta)] px-4 py-1.5 border border-[var(--terracotta)]/30 rounded-full w-fit mb-4">{data.hero.tag}</span>

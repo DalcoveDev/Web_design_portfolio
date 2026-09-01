@@ -43,6 +43,8 @@ export interface PortfolioData {
     github: string;
     instagram: string;
   };
+  profileImage: string;
+  cv: string;
 }
 
 export const defaultData: PortfolioData = {
@@ -123,4 +125,6 @@ export const defaultData: PortfolioData = {
     github: 'https://github.com/DalcoveDev/',
     instagram: 'https://instagram.com/DalcoveDev',
   },
+  profileImage: '/images/d2.jpg',
+  cv: '/INGABIRE_DALCOVE_Resume_Real_for_all.pdf',
 };
