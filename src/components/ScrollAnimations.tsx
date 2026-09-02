@@ -8,9 +8,13 @@ import { Draggable } from 'gsap/Draggable';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 import { Observer } from 'gsap/Observer';
 import { SplitText } from 'gsap/SplitText';
+import { TextPlugin } from 'gsap/TextPlugin';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
+import { Physics2DPlugin } from 'gsap/Physics2DPlugin';
+import { PhysicsPropsPlugin } from 'gsap/PhysicsPropsPlugin';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(ScrollTrigger, Flip, Draggable, InertiaPlugin, Observer, SplitText);
+gsap.registerPlugin(ScrollTrigger, Flip, Draggable, InertiaPlugin, Observer, SplitText, TextPlugin, ScrambleTextPlugin, Physics2DPlugin, PhysicsPropsPlugin);
 
 /* ─── Hero text reveal animation ─── */
 export function HeroAnimations({ children }: { children: ReactNode }) {
@@ -871,6 +875,145 @@ export function SplitTextReveal({
   return (
     <div ref={ref} className={className}>
       {text}
+    </div>
+  );
+}
+
+/* ─── Typewriter text — types out text character by character ─── */
+export function TypewriterText({
+  text,
+  className = '',
+  duration = 2,
+}: {
+  text: string;
+  className?: string;
+  duration?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.to(ref.current, {
+      text: { value: text, delimiter: '' },
+      duration,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }, { scope: ref });
+
+  return <div ref={ref} className={className} />;
+}
+
+/* ─── Scramble text — glitches text before revealing ─── */
+export function ScrambleTextReveal({
+  text,
+  className = '',
+  duration = 1.5,
+}: {
+  text: string;
+  className?: string;
+  duration?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current, {
+      scrambleText: {
+        text,
+        chars: '!@#$%^&*()_+-=[]{}|;:,.<>?',
+        revealDelay: 0.5,
+        speed: 0.8,
+      },
+      duration,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }, { scope: ref });
+
+  return <div ref={ref} className={className} />;
+}
+
+/* ─── Physics throw — elements fly off with physics ─── */
+export function PhysicsThrow({
+  children,
+  className = '',
+  angle = -45,
+  velocity = 800,
+}: {
+  children: ReactNode;
+  className?: string;
+  angle?: number;
+  velocity?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.to(ref.current, {
+      physics2D: {
+        angle,
+        velocity,
+        gravity: 400,
+      },
+      opacity: 0,
+      duration: 2,
+      ease: 'power1.in',
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── Physics fade — elements fly up with physics on scroll ─── */
+export function PhysicsFadeIn({
+  children,
+  className = '',
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1.5,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
     </div>
   );
 }
