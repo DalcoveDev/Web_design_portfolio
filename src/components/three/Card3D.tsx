@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 
 export default function Card3D({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,14 +26,16 @@ export default function Card3D({ children, className = '' }: { children: React.R
   }
 
   return (
-    <motion.div
+    <div
       ref={ref}
       className={`relative ${className}`}
-      style={{ perspective: 1000 }}
+      style={{
+        perspective: 1000,
+        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+        transition: 'transform 0.4s cubic-bezier(0.03, 0.98, 0.52, 0.99)',
+      }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      animate={{ rotateX, rotateY }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       {children}
       {/* Glare overlay */}
@@ -44,6 +45,6 @@ export default function Card3D({ children, className = '' }: { children: React.R
           background: `linear-gradient(105deg, transparent 40%, rgba(255,255,255,${glareOpacity}) 45%, rgba(255,255,255,${glareOpacity * 0.5}) 50%, transparent 55%)`,
         }}
       />
-    </motion.div>
+    </div>
   );
 }

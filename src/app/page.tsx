@@ -11,6 +11,8 @@ import HeroBackground from '@/components/HeroBackground';
 import BehindTheScenes from '@/components/BehindTheScenes';
 import Testimonials from '@/components/Testimonials';
 import Skills from '@/components/Skills';
+import BlogCard from '@/components/BlogCard';
+import TestimonialForm from '@/components/TestimonialForm';
 import { defaultData } from '@/lib/data';
 import { loadData } from '@/lib/store';
 import {
@@ -234,10 +236,37 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Blog */}
+        <section id="blog" className="relative py-40 bg-[var(--bg-warm)] border-y border-white/6">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <ScrollRevealSection>
+              <div className="flex items-baseline gap-6 mb-16">
+                <span className="font-serif italic text-[var(--terracotta)] text-lg">📝</span>
+                <h2 className="text-sm font-semibold tracking-widest uppercase">Blog</h2>
+              </div>
+              <p className="text-[var(--cream-dim)] max-w-[50ch] mb-12">
+                Thoughts on fintech, AI, blockchain, and building technology that matters.
+              </p>
+            </ScrollRevealSection>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {data.blog.map((post, i) => (
+                <BlogCard key={post.id} post={post} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Testimonials */}
         <div className="border-y border-white/6">
           <Testimonials />
         </div>
+
+        {/* Testimonial Form */}
+        <section className="py-16 bg-[var(--bg-warm)]">
+          <div className="max-w-[600px] mx-auto px-6">
+            <TestimonialForm />
+          </div>
+        </section>
 
         {/* Photo Gallery */}
         <section className="relative py-24 bg-[var(--bg-warm)] border-y border-white/6">

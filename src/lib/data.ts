@@ -25,6 +25,17 @@ export interface Testimonial {
   avatar: string;
 }
 
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  readTime: string;
+  image: string;
+  tags: string[];
+}
+
 export interface Stat {
   number: string;
   label: string;
@@ -51,6 +62,7 @@ export interface PortfolioData {
     instagram: string;
   };
   testimonials: Testimonial[];
+  blog: BlogPost[];
   profileImage: string;
   cv: string;
 }
@@ -126,6 +138,68 @@ export const defaultData: PortfolioData = {
       title: 'PYTHON-FOR-AI',
       description: 'Educational resource teaching Python fundamentals for AI and machine learning. Practical code examples & learning pathway structure. Key strength: Teaching Skills.',
       tech: ['Python', 'AI/ML', 'Education'], github: 'https://github.com/DalcoveDev/PYTHON-FOR-AI', demo: '', image: '/images/4N0A9747.JPG', status: 'In Development',
+    },
+  ],
+  blog: [
+    {
+      id: 'b1',
+      title: 'How Mobile Money + Bitcoin Can Transform Africa\'s Financial Future',
+      excerpt: 'Exploring how bridging mobile money platforms like MTN MoMo and Airtel Money with Bitcoin via the Lightning Network can bring financial inclusion to millions of unbanked Africans.',
+      category: 'Fintech',
+      date: 'Aug 15, 2026',
+      readTime: '8 min read',
+      image: '/images/4N0A9359.JPG',
+      tags: ['Bitcoin', 'Lightning Network', 'Mobile Money', 'Africa'],
+    },
+    {
+      id: 'b2',
+      title: 'Building AI Chatbots with Multi-LLM Support in Next.js',
+      excerpt: 'A deep dive into building production-ready AI chatbots that support multiple language models (xAI, OpenAI, Fireworks) with streaming responses, authentication, and database persistence.',
+      category: 'AI',
+      date: 'Jul 28, 2026',
+      readTime: '12 min read',
+      image: '/images/4N0A9548.JPG',
+      tags: ['AI', 'Next.js', 'LLM', 'TypeScript'],
+    },
+    {
+      id: 'b3',
+      title: 'Why Every Developer Should Learn Python for AI in 2026',
+      excerpt: 'Python remains the dominant language for AI and machine learning. Here\'s a practical roadmap for developers looking to add AI skills to their toolkit — from fundamentals to real projects.',
+      category: 'AI',
+      date: 'Jul 10, 2026',
+      readTime: '6 min read',
+      image: '/images/4N0A9747.JPG',
+      tags: ['Python', 'AI/ML', 'Education', 'Roadmap'],
+    },
+    {
+      id: 'b4',
+      title: 'n8n + Gmail: Automating Workflows with AI-Powered Chat',
+      excerpt: 'How I built EjoFlow — an AI chat application that integrates n8n workflows with Gmail automation, supporting Kinyarwanda language processing for local users in Rwanda.',
+      category: 'Automation',
+      date: 'Jun 22, 2026',
+      readTime: '10 min read',
+      image: '/images/4N0A9385.JPG',
+      tags: ['n8n', 'Automation', 'Gmail', 'Kinyarwanda'],
+    },
+    {
+      id: 'b5',
+      title: 'Building Emergency Response Systems with NestJS Architecture',
+      excerpt: 'Lessons learned building INKINGI Rescue — an enterprise-grade emergency coordination API connecting citizens, rescuers, and authorities in real-time using NestJS and PostgreSQL.',
+      category: 'Backend',
+      date: 'Jun 5, 2026',
+      readTime: '9 min read',
+      image: '/images/4N0A9732.JPG',
+      tags: ['NestJS', 'PostgreSQL', 'Enterprise', 'Civic Tech'],
+    },
+    {
+      id: 'b6',
+      title: 'Lightning Network Explained: Instant Bitcoin Payments for Africa',
+      excerpt: 'A beginner-friendly guide to the Lightning Network — how it enables instant, low-cost Bitcoin transactions and why it\'s crucial for financial inclusion across the African continent.',
+      category: 'Fintech',
+      date: 'May 18, 2026',
+      readTime: '7 min read',
+      image: '/images/1001028563.jpg',
+      tags: ['Bitcoin', 'Lightning', 'Fintech', 'Africa'],
     },
   ],
   testimonials: [

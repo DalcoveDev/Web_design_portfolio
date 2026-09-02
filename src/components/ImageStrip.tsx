@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 const images = [
   '/images/4N0A9359.JPG',
   '/images/1001028563.jpg',
@@ -18,11 +16,7 @@ const images = [
 export default function ImageStrip() {
   return (
     <div className="py-12 overflow-hidden border-y border-white/6 bg-[var(--bg)]">
-      <motion.div
-        className="flex gap-4"
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-      >
+      <div className="flex gap-4 animate-marquee">
         {[...images, ...images].map((src, i) => (
           <div
             key={i}
@@ -37,7 +31,7 @@ export default function ImageStrip() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
