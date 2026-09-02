@@ -18,6 +18,13 @@ export interface Service {
   description: string;
 }
 
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  avatar: string;
+}
+
 export interface Stat {
   number: string;
   label: string;
@@ -43,13 +50,14 @@ export interface PortfolioData {
     github: string;
     instagram: string;
   };
+  testimonials: Testimonial[];
   profileImage: string;
   cv: string;
 }
 
 export const defaultData: PortfolioData = {
   hero: {
-    tag: 'Web Designer & Frontend Developer',
+    tag: 'Software Engineer & Full Stack Developer',
     titleLine1: 'I design',
     titleLine2: 'digital',
     titleLine3: 'experiences',
@@ -58,7 +66,7 @@ export const defaultData: PortfolioData = {
   },
   about: {
     heading: 'A designer who thinks in systems, not just screens.',
-    text: "Currently pursuing my university studies, I'm passionate about building digital experiences that feel intuitive and alive. My work spans UI/UX design, frontend development, and continuous exploration of emerging technologies that solve real-world problems.",
+    text: "I'm a software engineer passionate about building robust, scalable systems and intuitive digital experiences. My work spans full-stack development, API design, cloud infrastructure, and AI integration — always exploring emerging technologies that solve real-world problems.",
     stats: [
       { number: '3+', label: 'Years Learning' },
       { number: '10+', label: 'Projects Built' },
@@ -118,6 +126,26 @@ export const defaultData: PortfolioData = {
       title: 'PYTHON-FOR-AI',
       description: 'Educational resource teaching Python fundamentals for AI and machine learning. Practical code examples & learning pathway structure. Key strength: Teaching Skills.',
       tech: ['Python', 'AI/ML', 'Education'], github: 'https://github.com/DalcoveDev/PYTHON-FOR-AI', demo: '', image: '/images/4N0A9747.JPG', status: 'In Development',
+    },
+  ],
+  testimonials: [
+    {
+      quote: 'Dalcove delivered an exceptional fintech solution that bridges mobile money and Bitcoin. His understanding of both blockchain technology and African financial systems is remarkable.',
+      name: 'Jean-Pierre Habimana',
+      role: 'Fintech Entrepreneur',
+      avatar: '/images/1001028563.jpg',
+    },
+    {
+      quote: 'Working with Dalcove on our AI tourism platform was a game-changer. He brought fresh ideas and built a system that truly empowers local tour guides.',
+      name: 'Claudine Uwimana',
+      role: 'Tourism Tech Lead',
+      avatar: '/images/1001028575.jpg',
+    },
+    {
+      quote: 'His emergency response API was built with enterprise-grade architecture from day one. Dalcove thinks in systems, not just features — exactly what civic tech needs.',
+      name: 'Eric Mugisha',
+      role: 'Civic Tech Advocate',
+      avatar: '/images/1001028579.jpg',
     },
   ],
   contact: {
