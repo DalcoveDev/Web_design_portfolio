@@ -5,7 +5,12 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Flip } from 'gsap/Flip';
 import { Draggable } from 'gsap/Draggable';
-import { useGSAP } from '@gsap/react';gsap.registerPlugin(ScrollTrigger, Flip, Draggable);
+import { InertiaPlugin } from 'gsap/InertiaPlugin';
+import { Observer } from 'gsap/Observer';
+import { SplitText } from 'gsap/SplitText';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger, Flip, Draggable, InertiaPlugin, Observer, SplitText);
 
 /* ─── Hero text reveal animation ─── */
 export function HeroAnimations({ children }: { children: ReactNode }) {
@@ -733,10 +738,8 @@ export function MagneticHover({
 
     function handleMouseLeave() {
       gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
-    }
-
-    el.addEventListener('mousemove', handleMouseMove);
-    el.addEventListener('mouseleave', handleMouseLeave);
+    }      el.addEventListener('mousemove', handleMouseMove);
+      el.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       el.removeEventListener('mousemove', handleMouseMove);
@@ -747,6 +750,127 @@ export function MagneticHover({
   return (
     <div ref={ref} className={className}>
       {children}
+    </div>
+  );
+}
+
+/* ─── Inertia Draggable — drag with momentum/inertia physics ─── */
+export function InertiaDraggable({
+  children,
+  className = '',
+  axis = 'x',
+}: {
+  children: ReactNode;
+  className?: string;
+  axis?: 'x' | 'y' | 'x,y';
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    Draggable.create(ref.current, {
+      type: axis,
+      edgeResistance: 0.65,
+      inertia: true,
+      onDrag: function () {
+        gsap.to(ref.current!, { scale: 1.02, duration: 0.2 });
+      },
+      onDragEnd: function () {
+        gsap.to(ref.current!, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className} style={{ touchAction: 'none' }}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── Observer scroll — detect custom scroll directions ─── */
+export function ObserverScroll({
+  children,
+  onScrollUp,
+  onScrollDown,
+  className = '',
+}: {
+  children: ReactNode;
+  onScrollUp?: () => void;
+  onScrollDown?: () => void;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    Observer.create({
+      target: ref.current,
+      type: 'scrollTop',
+      onUp: () => onScrollUp?.(),
+      onDown: () => onScrollDown?.(),
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── SplitText reveal — character-by-character text animation ─── */
+export function SplitTextReveal({
+  text,
+  className = '',
+  splitBy = 'chars',
+}: {
+  text: string;
+  className?: string;
+  splitBy?: 'chars' | 'words' | 'lines';
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    try {
+      const split = SplitText.create(ref.current, { type: splitBy });
+      const targets = splitBy === 'chars' ? split.chars : splitBy === 'words' ? split.words : split.lines;
+
+      gsap.from(targets, {
+        opacity: 0,
+        y: 20,
+        rotationX: -40,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.02,
+        scrollTrigger: {
+          trigger: ref.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    } catch {
+      gsap.from(ref.current, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: ref.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    }
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {text}
     </div>
   );
 }
