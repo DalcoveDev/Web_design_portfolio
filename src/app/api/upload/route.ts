@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
 
 export async function POST(request: Request) {
   try {
@@ -11,9 +9,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    // Validate file size (max 10MB)
-    if (file.size > 10 * 1024 * 1024) {
-      return NextResponse.json({ error: 'File too large (max 10MB)' }, { status: 400 });
+    // Validate file size (max 5MB for base64)
+    if (file.size > 5 * 1024 * 1024) {
+      return NextResponse.json({ error: 'File too large (max 5MB)' }, { status: 400 });
     }
 
     // Validate file type
@@ -22,24 +20,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid file type. Allowed: JPG, PNG, GIF, WebP, SVG' }, { status: 400 });
     }
 
+    // Convert to base64 data URL
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
+    const base64 = buffer.toString('base64');
+    const dataUrl = `data:${file.type};base64,${base64}`;
 
-    // Generate unique filename
-    const ext = file.name.split('.').pop() || 'jpg';
-    const timestamp = Date.now();
-    const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_').replace(/_{2,}/g, '_');
-    const filename = `${timestamp}-${safeName}`;
-
-    // Save to public/images
-    const uploadDir = join(process.cwd(), 'public', 'images');
-    await mkdir(uploadDir, { recursive: true });
-    const filepath = join(uploadDir, filename);
-    await writeFile(filepath, buffer);
-
-    const url = `/images/${filename}`;
-
-    return NextResponse.json({ success: true, url, filename });
+    return NextResponse.json({ success: true, url: dataUrl, filename: file.name });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
