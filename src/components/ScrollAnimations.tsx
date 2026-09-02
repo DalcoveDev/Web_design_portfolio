@@ -750,3 +750,287 @@ export function MagneticHover({
     </div>
   );
 }
+
+/* ─── Text scramble — random characters before revealing real text ─── */
+export function TextScramble({
+  text,
+  className = '',
+  duration = 1.5,
+}: {
+  text: string;
+  className?: string;
+  duration?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const chars = '!<>-_\/[]{}—=+*^?#________';
+
+  useGSAP(() => {
+    if (!ref.current) return;
+    const el = ref.current;
+    let frame = 0;
+    const totalFrames = Math.floor(duration * 60);
+    const queue: { from: string; to: string; start: number; end: number }[] = [];
+
+    for (let i = 0; i < text.length; i++) {
+      queue.push({
+        from: chars[Math.floor(Math.random() * chars.length)],
+        to: text[i],
+        start: Math.floor(Math.random() * 40),
+        end: Math.floor(Math.random() * 40) + 40,
+      });
+    }
+
+    const interval = setInterval(() => {
+      let output = '';
+      let complete = 0;
+      for (let i = 0; i < queue.length; i++) {
+        const { from, to, start, end } = queue[i];
+        if (frame >= end) {
+          complete++;
+          output += to;
+        } else if (frame >= start) {
+          output += chars[Math.floor(Math.random() * chars.length)];
+        } else {
+          output += from;
+        }
+      }
+      el.textContent = output;
+      frame++;
+      if (complete === queue.length) clearInterval(interval);
+    }, 1000 / 60);
+
+    return () => clearInterval(interval);
+  }, { scope: ref });
+
+  return <div ref={ref} className={className}>{text}</div>;
+}
+
+/* ─── Scroll counter — counts from 0 to N with easing ─── */
+export function ScrollCounter({
+  target,
+  suffix = '',
+  className = '',
+}: {
+  target: number;
+  suffix?: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    const obj = { value: 0 };
+    gsap.to(obj, {
+      value: target,
+      duration: 2,
+      ease: 'power2.out',
+      onUpdate: () => {
+        if (ref.current) ref.current.textContent = Math.round(obj.value) + suffix;
+      },
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  });
+
+  return <span ref={ref} className={className}>0{suffix}</span>;
+}
+
+/* ─── Glow pulse — element glows on scroll ─── */
+export function GlowPulse({
+  children,
+  color = 'var(--terracotta)',
+  className = '',
+}: {
+  children: ReactNode;
+  color?: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.fromTo(ref.current, {
+      boxShadow: `0 0 0px ${color}`,
+    }, {
+      boxShadow: `0 0 60px ${color}, 0 0 120px ${color}`,
+      duration: 1.5,
+      ease: 'power2.inOut',
+      yoyo: true,
+      repeat: -1,
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 80%',
+        toggleActions: 'play pause play pause',
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── 3D rotate on scroll — element rotates in 3D as you scroll ─── */
+export function ScrollRotate3D({
+  children,
+  className = '',
+  maxRotation = 15,
+}: {
+  children: ReactNode;
+  className?: string;
+  maxRotation?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.fromTo(ref.current, {
+      rotateY: -maxRotation,
+      rotateX: maxRotation / 2,
+      opacity: 0.3,
+    }, {
+      rotateY: maxRotation,
+      rotateX: -maxRotation / 2,
+      opacity: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className} style={{ perspective: 1000 }}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── Clip reveal — element unclips from center outward ─── */
+export function ClipReveal({
+  children,
+  className = '',
+  direction = 'horizontal',
+}: {
+  children: ReactNode;
+  className?: string;
+  direction?: 'horizontal' | 'vertical';
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    const from = direction === 'horizontal'
+      ? { clipPath: 'inset(0 50% 0 50%)' }
+      : { clipPath: 'inset(50% 0 50% 0)' };
+    const to = direction === 'horizontal'
+      ? { clipPath: 'inset(0 0% 0 0%)' }
+      : { clipPath: 'inset(0% 0 0% 0)' };
+
+    gsap.fromTo(ref.current, from, {
+      ...to,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── Wave text — each character bounces like a wave ─── */
+export function WaveText({
+  text,
+  className = '',
+}: {
+  text: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+    const chars = ref.current.querySelectorAll('.wave-char');
+
+    gsap.from(chars, {
+      y: 40,
+      opacity: 0,
+      rotationZ: 10,
+      duration: 0.5,
+      ease: 'back.out(1.7)',
+      stagger: 0.04,
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {text.split('').map((char, i) => (
+        <span key={i} className="wave-char inline-block">
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+/* ─── Stagger scale — children pop in with scale + rotation ─── */
+export function StaggerScale({
+  children,
+  className = '',
+  stagger = 0.1,
+}: {
+  children: ReactNode;
+  className?: string;
+  stagger?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!ref.current) return;
+
+    gsap.from(ref.current.children, {
+      scale: 0,
+      rotation: -15,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'back.out(1.7)',
+      stagger,
+      scrollTrigger: {
+        trigger: ref.current,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}

@@ -33,8 +33,15 @@ import {
   ScrollProgressBar,
   ScrollTint as EaselTint,
   DevToolsPanel,
+  TextScramble,
+  ClipReveal,
+  WaveText,
+  StaggerScale,
+  ScrollRotate3D,
+  GlowPulse,
   useSmoothScroll,
 } from '@/components/ScrollAnimations';
+import CustomCursor from '@/components/CustomCursor';
 
 export default function Home() {
   useSmoothScroll();
@@ -46,6 +53,7 @@ export default function Home() {
 
   return (
     <>
+      <CustomCursor />
       <Header />
       <DevToolsPanel name="portfolio-devtools" />
       <main>
@@ -142,6 +150,7 @@ export default function Home() {
                 </StatsAnimation>
               </div>
               {/* Profile Photo */}
+              <ClipReveal direction="vertical" className="[&>div]:contents">
               <ScrollRevealSection delay={0.4}>
                 <EaselTint className="relative group">
                   <div className="absolute -inset-3 bg-gradient-to-br from-[var(--terracotta)]/20 to-[var(--sage)]/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -156,6 +165,7 @@ export default function Home() {
                   </div>
                 </EaselTint>
               </ScrollRevealSection>
+              </ClipReveal>
             </div>
           </div>
         </section>
