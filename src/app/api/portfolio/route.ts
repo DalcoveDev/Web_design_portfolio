@@ -4,7 +4,7 @@ import sql from '@/lib/db';
 // GET portfolio data
 export async function GET() {
   try {
-    const result = await sql`SELECT data FROM portfolio_data WHERE key = 'portfolio'`;
+    const result = await sql`SELECT data FROM portfolio_data WHERE key = 'portfolio'` as { data: unknown }[];
     if (result.length === 0) {
       return NextResponse.json({ error: 'No data found' }, { status: 404 });
     }

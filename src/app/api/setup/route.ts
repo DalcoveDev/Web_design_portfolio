@@ -14,7 +14,7 @@ export async function POST() {
     `;
 
     // Insert default data if not exists
-    const exists = await sql`SELECT COUNT(*) as count FROM portfolio_data WHERE key = 'portfolio'`;
+    const exists = await sql`SELECT COUNT(*) as count FROM portfolio_data WHERE key = 'portfolio'` as { count: string }[];
     
     if (exists[0].count === '0') {
       const defaultData = {
