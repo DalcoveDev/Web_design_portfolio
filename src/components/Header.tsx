@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useTheme } from '@/lib/theme';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -18,6 +20,9 @@ export default function Header() {
           <a href="#services" className="px-4 py-2 text-sm font-medium text-[var(--cream-dim)] hover:text-[var(--cream)] rounded-lg hover:bg-white/5 transition">Services</a>
           <a href="#projects" className="px-4 py-2 text-sm font-medium text-[var(--cream-dim)] hover:text-[var(--cream)] rounded-lg hover:bg-white/5 transition">Projects</a>
           <a href="#contact" className="px-4 py-2 text-sm font-semibold bg-[var(--terracotta)] text-[var(--white)] rounded-lg hover:bg-[var(--terracotta-dim)] transition ml-2">Contact</a>
+          <button onClick={toggleTheme} className="px-3 py-2 text-lg border border-white/10 rounded-lg hover:border-[var(--terracotta)] hover:bg-[var(--terracotta)]/10 transition ml-2" title="Toggle theme" aria-label="Toggle dark/light mode">
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
           <Link href="/admin" className="px-3 py-2 text-lg border border-white/10 rounded-lg hover:border-[var(--terracotta)] hover:bg-[var(--terracotta)]/10 transition ml-2" title="Admin Portal">⚙️</Link>
         </nav>
 
@@ -34,6 +39,9 @@ export default function Header() {
           <a href="#services" className="block py-3 text-lg text-[var(--cream-dim)]" onClick={() => setMobileOpen(false)}>Services</a>
           <a href="#projects" className="block py-3 text-lg text-[var(--cream-dim)]" onClick={() => setMobileOpen(false)}>Projects</a>
           <a href="#contact" className="block py-3 text-lg text-[var(--terracotta)] font-semibold" onClick={() => setMobileOpen(false)}>Contact</a>
+          <button onClick={() => { toggleTheme(); setMobileOpen(false); }} className="block py-3 text-lg text-[var(--cream-dim)] text-left w-full">
+            {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
+          </button>
           <Link href="/admin" className="block py-3 text-lg text-[var(--cream-dim)]" onClick={() => setMobileOpen(false)}>⚙️ Admin</Link>
         </div>
       )}

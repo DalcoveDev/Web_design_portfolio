@@ -42,7 +42,25 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+/* Light theme */
+[data-theme="light"] {
+  --cream: #1a1816;
+  --cream-dim: #5a5550;
+  --terracotta: #b84d30;
+  --terracotta-dim: #9a3f28;
+  --bg: #faf8f5;
+  --bg-warm: #f0ece6;
+  --surface: #ffffff;
+  --surface-hover: #f5f3f0;
+  --white: #1a1816;
+  --sage: #5a6b4f;
+}
+
+[data-theme="light"] .grain { opacity: 0.015; }
+[data-theme="light"] body { background: var(--bg); color: var(--cream); }
 
 /* Grain texture */
 .grain {
