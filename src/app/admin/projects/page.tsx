@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { loadData, saveData, generateId } from '@/lib/store';
 import { PortfolioData, Project, defaultData } from '@/lib/data';
+import FileUpload from '@/components/FileUpload';
 
 export default function AdminProjects() {
   const [data, setData] = useState<PortfolioData>(defaultData);
@@ -102,8 +103,10 @@ function ProjectForm({ project, onSave, onCancel }: { project: Project | null; o
           <div><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Tag</label><input className="input" value={form.tag} onChange={e => setForm({ ...form, tag: e.target.value })} /></div>
         </div>
         <div className="mb-4"><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Description *</label><textarea className="input min-h-[80px]" required value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} /></div>
+        <div className="mb-4">
+          <FileUpload value={form.image} onChange={url => setForm({ ...form, image: url })} label="Project Image" />
+        </div>
         <div className="grid md:grid-cols-2 gap-4 mb-4">
-          <div><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Image URL</label><input className="input" value={form.image} onChange={e => setForm({ ...form, image: e.target.value })} placeholder="https://..." /></div>
           <div><label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Emoji</label><input className="input" value={form.icon} onChange={e => setForm({ ...form, icon: e.target.value })} maxLength={4} /></div>
         </div>
         <div className="grid md:grid-cols-2 gap-4 mb-4">

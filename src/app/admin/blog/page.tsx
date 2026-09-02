@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { loadData, saveData } from '@/lib/store';
 import type { PortfolioData, BlogPost } from '@/lib/data';
+import FileUpload from '@/components/FileUpload';
 
 function BlogForm({ post, onSave, onCancel }: { post?: BlogPost; onSave: (p: BlogPost) => void; onCancel: () => void }) {
   const [form, setForm] = useState<BlogPost>(post || {
@@ -49,9 +50,8 @@ function BlogForm({ post, onSave, onCancel }: { post?: BlogPost; onSave: (p: Blo
           <label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Read Time</label>
           <input className="input" value={form.readTime} onChange={e => setForm({ ...form, readTime: e.target.value })} placeholder="e.g. 5 min read" />
         </div>
-        <div>
-          <label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Image</label>
-          <input className="input" value={form.image} onChange={e => setForm({ ...form, image: e.target.value })} placeholder="/images/..." />
+        <div className="md:col-span-2">
+          <FileUpload value={form.image} onChange={url => setForm({ ...form, image: url })} label="Post Image" />
         </div>
         <div>
           <label className="block text-xs font-semibold text-[var(--cream-dim)] uppercase tracking-widest mb-1.5">Date</label>
