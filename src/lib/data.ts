@@ -60,6 +60,8 @@ export interface PortfolioData {
     email: string;
     github: string;
     instagram: string;
+    linkedin: string;
+    devpost: string;
   };
   testimonials: Testimonial[];
   blog: BlogPost[];
@@ -223,9 +225,11 @@ export const defaultData: PortfolioData = {
     },
   ],
   contact: {
-    email: 'hello@example.com',
+    email: 'ingabiredalcove@gmail.com',
     github: 'https://github.com/DalcoveDev/',
-    instagram: 'https://instagram.com/DalcoveDev',
+    instagram: 'https://www.instagram.com/_dalcov_/',
+    linkedin: 'https://www.linkedin.com/in/ingabire-dalcove/',
+    devpost: 'https://devpost.com/ingabiredalcove',
   },
   profileImage: '/images/d2.jpg',
   cv: '/INGABIRE_DALCOVE_Resume_Real_for_all.pdf',
