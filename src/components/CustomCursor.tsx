@@ -23,39 +23,52 @@ export default function CustomCursor() {
     function animate() {
       pos.x += (mouse.x - pos.x) * 0.15;
       pos.y += (mouse.y - pos.y) * 0.15;
-
       gsap.set(cursor, { x: mouse.x, y: mouse.y, xPercent: -50, yPercent: -50 });
       gsap.set(trail, { x: pos.x, y: pos.y, xPercent: -50, yPercent: -50 });
-
       requestAnimationFrame(animate);
     }
 
-    window.addEventListener('mousemove', onMouseMove);
-    const raf = requestAnimationFrame(animate);
-
-    // Grow on interactive elements
     function onEnter() {
       gsap.to(cursor, { scale: 2, duration: 0.3 });
       gsap.to(trail, { scale: 1.5, opacity: 0.3, duration: 0.3 });
     }
+
     function onLeave() {
       gsap.to(cursor, { scale: 1, duration: 0.3 });
       gsap.to(trail, { scale: 1, opacity: 0.6, duration: 0.3 });
     }
 
-    const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea');
-    interactives.forEach((el) => {
-      el.addEventListener('mouseenter', onEnter);
-      el.addEventListener('mouseleave', onLeave);
-    });
+    function attachListeners() {
+      const els = document.querySelectorAll<HTMLElement>('a, button, [role="button"], input, textarea');
+      els.forEach((el) => {
+        el.addEventListener('mouseenter', onEnter);
+        el.addEventListener('mouseleave', onLeave);
+      });
+      return els;
+    }
+
+    function detachListeners(els: HTMLElement[]) {
+      els.forEach((el) => {
+        el.removeEventListener('mouseenter', onEnter);
+        el.removeEventListener('mouseleave', onLeave);
+      });
+    }
+
+    let tracked: HTMLElement[] = attachListeners();
+
+    window.addEventListener('mousemove', onMouseMove);
+    const raf = requestAnimationFrame(animate);
+
+    const interval = setInterval(() => {
+      detachListeners(tracked);
+      tracked = attachListeners();
+    }, 2000);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       cancelAnimationFrame(raf);
-      interactives.forEach((el) => {
-        el.removeEventListener('mouseenter', onEnter);
-        el.removeEventListener('mouseleave', onLeave);
-      });
+      clearInterval(interval);
+      detachListeners(tracked);
     };
   }, []);
 

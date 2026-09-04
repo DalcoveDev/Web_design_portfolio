@@ -1,5 +1,12 @@
 'use client';
 
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const images = [
   '/images/4N0A9359.JPG',
   '/images/1001028563.jpg',
@@ -14,9 +21,40 @@ const images = [
 ];
 
 export default function ImageStrip() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!trackRef.current) return;
+    const track = trackRef.current;
+
+    // Duplicate items for seamless loop
+    const items = Array.from(track.children);
+    items.forEach((item) => track.appendChild(item.cloneNode(true)));
+
+    const totalWidth = track.scrollWidth;
+    const tween = gsap.to(track, {
+      x: -totalWidth / 2,
+      duration: 35,
+      ease: 'none',
+      repeat: -1,
+    });
+
+    // Pause only this tween when scrolled out of viewport, resume when visible
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: 'top 80%',
+      end: 'bottom 20%',
+      onEnter: () => tween.play(),
+      onLeave: () => tween.pause(),
+      onEnterBack: () => tween.play(),
+      onLeaveBack: () => tween.pause(),
+    });
+  }, { scope: containerRef });
+
   return (
-    <div className="py-12 overflow-hidden border-y border-white/6 bg-[var(--bg)]">
-      <div className="flex gap-4 animate-marquee">
+    <div ref={containerRef} className="py-12 overflow-hidden border-y border-white/6 bg-[var(--bg)]">
+      <div ref={trackRef} className="flex gap-4">
         {[...images, ...images].map((src, i) => (
           <div
             key={i}

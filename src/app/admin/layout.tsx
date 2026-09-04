@@ -48,7 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="grain fixed inset-0 pointer-events-none opacity-20 z-0" />
 
       {/* Sidebar */}
-      <aside className={`fixed top-0 left-0 bottom-0 w-[260px] bg-[var(--surface)] border-r border-white/6 flex flex-col z-50 transition-transform duration-300 max-md:${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed top-0 left-0 bottom-0 w-[260px] bg-[var(--surface)] border-r border-white/6 flex flex-col z-50 transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
         <div className="p-6 border-b border-white/6">
           <Link href="/" className="text-xl font-bold text-[var(--cream)] block">
             Dal<span className="text-[var(--terracotta)]">cove</span>
