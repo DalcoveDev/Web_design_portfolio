@@ -38,8 +38,8 @@ export default function CustomCursor() {
       gsap.to(trail, { scale: 1, opacity: 0.6, duration: 0.3 });
     }
 
-    function attachListeners() {
-      const els = document.querySelectorAll<HTMLElement>('a, button, [role="button"], input, textarea');
+    function attachListeners(): HTMLElement[] {
+      const els = Array.from(document.querySelectorAll<HTMLElement>('a, button, [role="button"], input, textarea'));
       els.forEach((el) => {
         el.addEventListener('mouseenter', onEnter);
         el.addEventListener('mouseleave', onLeave);
