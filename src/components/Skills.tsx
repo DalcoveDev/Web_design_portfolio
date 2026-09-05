@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── Infinite horizontal skill marquee (pause on hover) ───
+// --- Infinite horizontal skill marquee (pause on hover) ---
 interface SkillMarqueeProps {
   skills: string[];
   speed?: number;
