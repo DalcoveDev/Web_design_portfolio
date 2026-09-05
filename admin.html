@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dalcove Admin Dashboard</title>
+  <link rel="stylesheet" href="dist/styles.css">
+</head>
+<body class="bg-bg fg-accent font-display">
+  
+  <div class="min-h-screen p-8">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+      
+      <!-- Site Stats -->
+      <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="p-4 rounded-lg bg-bg border border-muted/20">
+          <div class="text-3xl font-bold terracotta">15</div>
+          <div class="text-muted/60">Sections</div>
+        </div>
+        <div class="p-4 rounded-lg bg-bg border border-muted/20">
+          <div class="text-3xl font-bold terracotta">8</div>
+          <div class="text-muted/60">Projects</div>
+        </div>
+        <div class="p-4 rounded-lg bg-bg border border-muted/20">
+          <div class="text-3xl font-bold terracotta">3</div>
+          <div class="text-muted/60">Testimonials</div>
+        </div>
+        <div class="p-4 rounded-lg bg-bg border border-muted/20">
+          <div class="text-3xl font-bold terracotta">1</div>
+          <div class="text-muted/60">Blog Posts</div>
+        </div>
+      </div>
+      
+      <!-- Content Management -->
+      <div class="space-y-6">
+        <h2 class="text-xl font-bold mb-4">Content Management</h2>
+        
+        <!-- Hero Section -->
+        <div>
+          <h3 class="font-medium mb-2">Hero Tagline</h3>
+          <p class="text-muted/60 mb-2">Crafting modern, user-centered websites that merge visual beauty with functional precision.</p>
+          <input type="text" class="w-full px-3 py-2 rounded-lg bg-bg border border-muted/50 focus:border-accent" value="Crafting modern, user-centered websites that merge visual beauty with functional precision.">
+        </div>
+        
+        <!-- About Section -->
+        <div>
+          <h3 class="font-medium mb-2">About Bio</h3>
+          <p class="text-muted/60 mb-2">I'm Dalcove, a web designer and frontend developer focused on creating digital experiences that balance aesthetic beauty with functional precision.</p>
+          <textarea class="w-full px-3 py-2 rounded-lg bg-bg border border-muted/50 focus:border-accent resize-y" rows="3">I'm Dalcove, a web designer and frontend developer focused on creating digital experiences that balance aesthetic beauty with functional precision.</textarea>
+        </div>
+        
+        <!-- Testimonial -->
+        <div>
+          <h3 class="font-medium mb-2">Latest Testimonial</h3>
+          <p class="text-muted/60 mb-2">"Working with Dalcove was a pleasure. His attention to detail and design thinking elevated our web presence significantly."</p>
+          <div>
+            <input type="text" class="w-full px-3 py-2 rounded-lg bg-bg border border-muted/50 focus:border-accent" value="Alex Thompson">
+            <input type="text" class="w-full px-3 py-2 rounded-lg bg-bg border border-muted/50 focus:border-accent" value="Design Director, TechCorp">
+          </div>
+        </div>
+        
+        <!-- Blog Post -->
+        <div>
+          <h3 class="font-medium mb-2">Blog Post Title</h3>
+          <p class="text-muted/60 mb-2">My Web Design Process</p>
+          <input type="text" class="w-full px-3 py-2 rounded-lg bg-bg border border-muted/50 focus:border-accent" value="My Web Design Process">
+        </div>
+      </div>
+      
+      <!-- Actions -->
+      <div class="mt-8 pt-8 border-t border-muted/20">
+        <button class="btn-accent w-full py-3 rounded-full font-medium">Save Changes</button>
+        <button class="btn-border w-full py-3 rounded-full font-medium ml-2">Cancel</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
