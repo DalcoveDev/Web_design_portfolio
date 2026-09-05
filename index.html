@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dalcove — Web Designer & Frontend Developer</title>
+  <link rel="preload" href="fonts/SpaceGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="dist/styles.css">
+</head>
+<body class="bg-bg fg-accent font-display">
+  
+  <!-- Hero Section -->
+  <section class="min-h-screen bg-bg relative overflow-hidden">
+    <div class="absolute inset-0 select-none">
+      <div class="grain opacity-50 fixed inset-0 pointer-events-none"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 py-20 flex flex-col items-center justify-center text-center">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4">Dalcove</h1>
+      <p class="text-lg md:text-xl text-m muted mb-8 max-w-2xl">Crafting modern, user-centered websites that merge visual beauty with functional precision.</p>
+      <div class="flex gap-4 flex-wrap justify-center">
+        <a href="#work" class="btn-accent px-6 py-3 rounded-full font-medium transition-colors hover:opacity-90">View Work</a>
+        <a href="#about" class="btn-border px-6 py-3 rounded-full font-medium transition-colors hover:bg-bg/5">About</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-black/20 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold mb-4">About</h2>
+          <p class="text-lg muted leading-relaxed">
+            I'm Dalcove, a web designer and frontend developer focused on creating digital experiences that balance aesthetic beauty with functional precision. I blend meticulous design with clean code to build websites that aren't just seen—they're experienced.
+          </p>
+          <div class="mt-6">
+            <p class="text-base muted">Based in Toronto, I specialize in custom websites, brand identities, and frontend architecture that scales.</p>
+          </p>
+        </div>
+        <div class="relative">
+          <!-- Hero image placeholder -->
+          <div class="relative rounded-2xl overflow-hidden bg-gradient-to-br from-bg to-[#141210]">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-64 h-64 rounded-xl bg-[var(--accent)]/20"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="work" class="py-16 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12">Work</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="group border rounded-lg p-6 hover:border-accent transition-colors">
+          <h3 class="text-xl font-medium mb-2">Web Design</h3>
+          <p class="text-muted/60">User-centered designs that blend beauty with functionality.</p>
+        </article>
+        <article class="group border rounded-lg p-6 hover:border-accent transition-colors">
+          <h3 class="text-xl font-medium mb-2">Frontend Development</h3>
+          <p class="text-muted/60">Clean, maintainable code with modern frontend architecture.</p>
+        </article>
+        <article class="group border rounded-lg p-6 hover:border-accent transition-colors">
+          <h3 class="text-xl font-medium mb-2">Brand Identity</h3>
+          <p class="text-muted/60">Visual systems that translate beautifully to the web.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-16 bg-black/20 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12">Skills</h2>
+      <div class="marquee-container overflow-x-auto scrollbar-hidden py-6">
+        <div class="inline-flex gap-8 items-center">
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">HTML</span>
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">CSS</span>
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">JavaScript</span>
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">React</span>
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">GSAP</span>
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">Tailwind</span>
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">Lenis</span>
+          <span class="skill-item text-2xl font-medium terracotta px-6 py-3 rounded-lg transition-all hover:bg-bg/5">Three.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-16 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12">Projects</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <!-- Project cards -->
+        <article class="project-card border rounded-lg p-4 hover:border-accent transition-colors">
+          <h3 class="text-lg font-medium">Project 1</h3>
+          <div class="project-image h-48 rounded-bg bg-[var(--accent)]/20"></div>
+        </article>
+        <article class="project-card border rounded-lg p-4 hover:border-accent transition-colors">
+          <h3 class="text-lg font-medium">Project 2</h3>
+          <div class="project-image h-48 rounded-bg bg-[var(--accent)]/20"></div>
+        </article>
+        <article class="project-card border rounded-lg p-4 hover:border-accent transition-colors">
+          <h3 class="text-lg font-medium">Project 3</h3>
+          <div class="project-image h-48 rounded-bg bg-[var(--accent)]/20"></div>
+        </article>
+        <article class="project-card border rounded-lg p-4 hover:border-accent transition-colors">
+          <h3 class="text-lg font-medium">Project 4</h3>
+          <div class="project-image h-48 rounded-bg bg-[var(--accent)]/20"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience/Timeline Section -->
+  <section class="py-16 bg-black/20 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2024 - Present</h3>
+            <h4>Freelance Web Designer</h4>
+            <p>Building custom websites for clients across various industries.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2023 - 2024</h3>
+            <h4>Frontend Developer</h4>
+            <p>Developing responsive websites and web applications.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>2022 - 2023</h3>
+            <h4>Web Design Intern</h4>
+            <p>Assisted in designing and developing company websites.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="py-16 bg-black/20 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12">Blog</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Blog posts -->
+        <article class="blog-card border rounded-lg p-4">
+          <div class="blog-meta text-muted/60 mb-2">Jan 2024</article>
+          <h3 class="font-medium hover:text-accent transition-colors">My Web Design Process</article>
+        </article>
+        <article class="blog-card border rounded-lg p-4">
+          <div class="blog-meta text-muted/60 mb-2">Feb 2024</article>
+          <h3 class="font-medium hover:text-accent transition-colors">Responsive Design Best Practices</article>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12">Testimonials</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="testimonial-card border rounded-lg p-4">
+          <p class="quoted text-lg muted">"Working with Dalcove was a pleasure. His attention to detail and design thinking elevated our web presence significantly."</p>
+          <div class="mt-4">
+            <div class="font-medium">Alex Thompson</div>
+            <div class="text-muted/60">Design Director, TechCorp</div>
+          </div>
+        </article>
+        <article class="testimonial-card border rounded-lg p-4">
+          <p class="quoted text-lg muted">"A truly collaborative process. Dalcove understood our vision and brought it to life with precision."</p>
+          <div class="mt-4">
+            <div class="font-medium">Sarah Chen</div>
+            <div class="text-muted/60">Product Lead, Nova Studios</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-16 relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12">Gallery</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <article class="gallery-item border rounded-lg p-4">
+          <div class="gallery-image h-48 rounded-bg bg-[var(--accent)]/20"></div>
+        </article>
+        <article class="gallery-item border rounded-lg p-4">
+          <div class="gallery-image h-48 rounded-bg bg-[var(--accent)]/20"></div>
+        </article>
+        <article class="gallery-item border rounded-lg p-4">
+          <div class="gallery-image h-48 rounded-bg bg-[var(--accent)]/20"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-black/20 relative">
+    <div class="max-w-md mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-6">Contact</h2>
+      <form>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn-accent w-full py-3 rounded-full font-medium">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="footer" class="py-12 bg-bg relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-muted text-sm">
+        <span>2024 Dalcove. All rights reserved.</span>
+        <span>•</span>
+        <span>Web Designer & Frontend Developer</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js" defer></script>
+</body>
+</html>

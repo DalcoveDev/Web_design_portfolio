@@ -1,0 +1,29 @@
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom properties */
+:root {
+  --bg: #0e0e0e;
+  --fg: #f0ebe3;
+  --accent: #c45d3e;
+  --muted: #b8b0a4;
+}
+
+/* Grain texture overlay */
+.grain {
+  background-image: url("data:image/grain@4x.png");
+  background-repeat: repeat;
+  background-position: center;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
